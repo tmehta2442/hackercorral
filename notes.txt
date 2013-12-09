@@ -1,0 +1,56 @@
+12/8:
+1. Created app ;)
+2. Created controller
+	=> made a test page
+
+12/9
+1. Pushed to heroku
+	=> PROBLEMS!!!
+	A. Sqlite needed to go from ative side to "group:development, :test"
+	
+	B. config/application.rb 
+	=> added config.assets.initialize_on_precompile = false to the end
+	per https://devcenter.heroku.com/articles/rails-asset-pipeline#troubleshooting
+
+	While precompiling assets, in Rails 3.x, you can prevent initializing your application and connecting to the database by ensuring that the following line is in your config/application.rb
+
+	C. Next error was that I got a "connection refused"
+	=> per same above link
+	... forgot to git add, commit, etc ;)
+
+2. A "Duhh" moment
+
+I was running some rspec tests and was trying to figure out why it was not working. Essentially, in my test file I had it looking at "users/index" and then I got an error asking for a show page method, and when I went ahead and made one in the controller it then asked me to create a show template.
+
+My routes read as follows:
+
+    users GET    /users(.:format)          users#index
+          POST   /users(.:format)          users#create
+ new_user GET    /users/new(.:format)      users#new
+edit_user GET    /users/:id/edit(.:format) users#edit
+     user GET    /users/:id(.:format)      users#show
+          PUT    /users/:id(.:format)      users#update
+          DELETE /users/:id(.:format)      users#destroy
+
+Ok... lets test what happens if I update the routes to have :
+
+get "users/index"
+
+users_index GET    /users/index(.:format)    users#index
+
+OK, now my test works ... AHHA!
+
+Before when I had my rspec test look at users/index my "resources :users" default didn't have that! 
+
+My TEST was wrong. By having it go to "/users" I got the test to pass... YAY!
+
+3. About Me page
+
+Well, I was about to make an about me page and throw that into the show for users or just force the route via a get users/about. Nether felt right.
+
+Rather, I have decided to make a new "site" controller and put it there... where it should be!!
+
+
+
+
+
