@@ -50,6 +50,12 @@ Well, I was about to make an about me page and throw that into the show for user
 
 Rather, I have decided to make a new "site" controller and put it there... where it should be!!
 
+4. Why is the title for a rails app not showing up the way I expected?
+
+If you look into your views/layouts/application.html.erb this may override whatever else you may have. Still trying to figure out how to OVERRIDE that ;)
+
+
+
 
 
 

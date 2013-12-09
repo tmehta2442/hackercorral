@@ -1,9 +1,15 @@
+<% provide(:title, "Home") %>
+<!DOCTYPE html>
 <html>
   <head>
-		<title>Greeting</title> 
+		<title>Hacker Corral | <%= yield(:title) %></title> 
 	</head>
 	<body>
-		<p>Hacker Corral</p>
-  </body>
+		<h1>Hacker Corral</h1>
+		<p>
+			This is where Hacker Corral's home page will go
+			<a href="http://hackercorral.com">Hacker Corral</a> home page.
+		</p>
+	</body>
 </html>
 <!-- "home" -->
