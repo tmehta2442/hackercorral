@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.15'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '2.0.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
 
 	gem 'sqlite3'
 	gem 'rspec-rails'
+	gem 'sass-rails', '~> 3.2.3'
 end
 
 # Gems used only for assets and not required
@@ -30,6 +31,7 @@ end
 
 group :production do
 	gem 'pg'
+	gem 'sass-rails', '~> 3.2.3'
 end
 
 # To use ActiveModel has_secure_password
