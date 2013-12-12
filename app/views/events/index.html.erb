@@ -1,1 +1,11 @@
-<div class="container">testing if events.html.erb is working</div>
+<div class="container">testing if events index.html.erb is working</div>
+<br />
+<div class="container">
+	<% @events.each do |test| %>
+		<%= test.event_name %><br />
+		<%= test.event_location %><br />
+		<%= test.event_details %><br />
+		<%= test.user_id %></br />
+	<% end %>
+	<%= current_user.email %>
+</div>
