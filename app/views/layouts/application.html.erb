@@ -8,8 +8,8 @@
 	</head>
 	<body>
 		<% if current_user %>
-		testing what user id is being passed
-			<%= current_user.id %>
+		testing what user id is being passed- this is coming from application
+			<p><%= current_user.id %></p>
 		<% end %>
 		<%= render 'layouts/header' %>
 		<div class="container">

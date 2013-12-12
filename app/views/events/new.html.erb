@@ -1,6 +1,7 @@
 <div class="container">testing if new events html.erb is working</div>
 <% if current_user %>
 	<%= form_for @event do |f| %>
+			<%= f.hidden_field :user_id %>
 		<p>
 			<%= f.label :event_name %><br />
 			<%= f.text_field :event_name %>
