@@ -9,7 +9,7 @@ class EventsController < ApplicationController
 	end
 
 	def create
-		@event = Event.new
+		@event = Event.new[:user]
 	end
 
 
