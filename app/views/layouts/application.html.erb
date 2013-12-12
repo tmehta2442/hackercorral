@@ -7,6 +7,10 @@
 	  <%= csrf_meta_tags %>
 	</head>
 	<body>
+		<% if current_user %>
+		testing what user id is being passed
+			<%= current_user.id %>
+		<% end %>
 		<%= render 'layouts/header' %>
 		<div class="container">
 			<%= yield %>

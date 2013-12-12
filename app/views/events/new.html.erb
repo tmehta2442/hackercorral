@@ -1,19 +1,22 @@
 <div class="container">testing if new events html.erb is working</div>
-
-<%= form_for @event do |f| %>
-	<p>
-		<%= f.label :event_name %><br />
-		<%= f.text_field :event_name %>
-	</p>
-	<p>
-		<%= f.label :event_location %><br />
-		<%= f.text_field :event_location %>
-	</p>
-	<p>
-		<%= f.label :event_details %><br />
-		<%= f.text_area :event_details %>
-	</p>
-	<p>
-		<%= f.submit %>
-	</p>
+<% if current_user %>
+	<%= form_for @event do |f| %>
+		<p>
+			<%= f.label :event_name %><br />
+			<%= f.text_field :event_name %>
+		</p>
+		<p>
+			<%= f.label :event_location %><br />
+			<%= f.text_field :event_location %>
+		</p>
+		<p>
+			<%= f.label :event_details %><br />
+			<%= f.text_area :event_details %>
+		</p>
+		<p>
+			<%= f.submit %>
+		</p>
+	<% end %>
+<% else %>
+	please sign in or create an account before creating an event
 <% end %>

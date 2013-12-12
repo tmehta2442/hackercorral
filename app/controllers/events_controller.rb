@@ -9,7 +9,13 @@ class EventsController < ApplicationController
 	end
 
 	def create
-		@event = Event.new[:user]
+		@event = Event.create(params[:event])
+		
+		if @event.save
+			redirect_to @event
+		else
+			render "new"
+		end
 	end
 
 
