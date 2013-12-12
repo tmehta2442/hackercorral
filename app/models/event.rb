@@ -1,3 +1,7 @@
 class Event < ActiveRecord::Base
-  # attr_accessible :title, :body
+	belongs_to :user
+	
+	attr_accessible :event_name, :event_location, :event_details
+
+  
 end
