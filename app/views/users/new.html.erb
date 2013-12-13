@@ -10,21 +10,22 @@
 			<% end %>
 		</div>
 	<% end %>
-
-	<div class="field">
-		<%= f.label :email %><br />
-		<%= f.text_field :email %>
-	</div>
-	<div class="field">
-		<%= f.label :password %><br />
-		<%= f.password_field :password %>
-	</div>
-	<div class="field">
-		<%= f.label :password_confirmation %><br />
-		<%= f.password_field :password_confirmation %><br />
-		<br />
-	</div>
-	<div class="actions"><%= f.submit "Sign Up", class: "btn btn-primary" %></div>
+	<form role="form">
+		<div class="col-sm-6 form-group">
+			<label><%= f.label :email %></label>
+			<%= f.text_field :email, class: "form-control" %>
+		</div>
+		<div class="col-sm-6 form-group">
+			<label><%= f.label :password %></label>
+			<%= f.password_field :password, class: "form-control" %>
+		</div>
+		<div class="col-sm-6 form-group">
+			<label><%= f.label :password_confirmation %></label>
+			<%= f.password_field :password_confirmation, class: "form-control" %>
+			<br />
+		</div>
+		<div class="actions"><%= f.submit "Sign Up", class: "btn btn-primary" %></div>
+	</form>
 <% end %>
 
 

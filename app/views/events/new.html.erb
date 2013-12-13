@@ -1,23 +1,32 @@
 <div class="container">testing if  events new.html.erb is working</div>
 <% if current_user %>
 	<%= form_for @event do |f| %>
-			<%= f.hidden_field :user_id, value: current_user.id %>
-		<p>
-			<%= f.label :event_name %><br />
-			<%= f.text_field :event_name %>
-		</p>
-		<p>
-			<%= f.label :event_location %><br />
-			<%= f.text_field :event_location %>
-		</p>
-		<p>
-			<%= f.label :event_details %><br />
-			<%= f.text_area :event_details %>
-		</p>
-		<p>
-			<%= f.submit %>
-		</p>
+		<form role="form">
+				<%= f.hidden_field :user_id, value: current_user.id %>
+			<div class="form-group">
+				<label><%= f.label :event_name %></label>
+				<%= f.text_field :event_name, class: "form-control" %>
+			</div>
+			</p>
+			<p>
+				<div class="form-group">
+				<%= f.label :event_location %>
+				<%= f.text_field :event_location, class: "form-control" %>
+				</div>
+			</p>
+			<p>
+				<div class="form-group">
+				<%= f.label :event_details %>
+				<%= f.text_area :event_details, class: "form-control"%>
+				</div>
+			</p>
+			<p>
+				<div class="actions"><%= f.submit "Create Event", class: "btn btn-primary" %>
+			</p>
+		</form>
 	<% end %>
 <% else %>
+	<div class="alert alert-danger">
 	please sign in or create an account before creating an event
+	</div>
 <% end %>
