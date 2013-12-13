@@ -127,6 +127,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0.4)
+    simple_calendar (0.1.9)
+      rails (>= 3.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -160,5 +162,6 @@ DEPENDENCIES
   rails_log_stdout!
   rspec-rails
   sass-rails (~> 3.2.3)
+  simple_calendar (~> 0.1.9)
   sqlite3
   uglifier (>= 1.0.3)

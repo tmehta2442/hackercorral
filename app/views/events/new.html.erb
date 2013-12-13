@@ -20,6 +20,9 @@
 				<%= f.text_area :event_details, class: "form-control"%>
 				</div>
 			</p>
+			
+			<%= f.date_select :start_time %>
+
 			<p>
 				<div class="actions"><%= f.submit "Create Event", class: "btn btn-primary" %>
 			</p>
