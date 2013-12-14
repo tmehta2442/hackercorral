@@ -15,10 +15,11 @@
 
 	<%= link_to "Create Event", new_event_path, class: "btn btn-large btn-primary" %>
 </div>
-
-<%= calendar @events do |test| %>
-  <div><%= link_to test.event_name, test %></div>
-<% end %>
+<div class="calendar">
+	<%= calendar @events do |test| %>
+	  <div><%= link_to test.event_name, test %></div>
+	<% end %>
+</div>
 
 <%= link_to image_tag("hackercorral.png", alt: "Hacker Corral"), 'http://hackercorral.com/' %>
 <!-- "home" -->
