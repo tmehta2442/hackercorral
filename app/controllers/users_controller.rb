@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 	def index
 		@users = User.all
 		@events = Event.all
+		gon.current_user = current_user
 	end
 
 	def new
