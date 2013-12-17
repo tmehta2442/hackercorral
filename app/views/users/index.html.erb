@@ -24,7 +24,7 @@
 </ul>
 <!-- end -->
 <div id="map"></div>
-<div id="text">     
+<div id="text">
 </div>
 <div class="calendar">
 	<%= calendar @events do |test| %>
@@ -127,7 +127,7 @@
         var service = new google.maps.places.PlacesService(map);
         // service.nearbySearch(request, callback);
         service.nearbySearch(callback);
-      } else {
+        } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
     });

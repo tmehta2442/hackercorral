@@ -1,9 +1,5 @@
 class EventsController < ApplicationController
 
-	# before_filter do
-	# 	@user = User.first
-	# end
-
 	def index
 		@events = Event.all
 	end
