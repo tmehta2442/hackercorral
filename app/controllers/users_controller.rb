@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 		@users = User.all
 		@events = Event.all
 		gon.current_user = current_user
+		gon.events = Event.all
 	end
 
 	def new

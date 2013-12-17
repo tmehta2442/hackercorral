@@ -1,3 +1,5 @@
+
+<div class="center hero-unit">
 <% if flash[:notice] %>
 	<div class="alert alert-success">
 		<%= flash[:notice] %>
@@ -5,7 +7,7 @@
 <% end %>
 
 
-<div class="center hero-unit">
+
 	<h1>Hacker Corral</h1>
 	
 	<h2>
@@ -22,7 +24,7 @@
 </div>
 <div class="calendar">
 	<%= calendar @events do |test| %>
-	  <div><%= link_to test.event_name, test %></div>
+	<%= link_to test.event_name, test %>
 	<% end %>
 </div>
 
@@ -38,13 +40,14 @@
 	var blueDot = "/assets/blueDot.png";
 	var currentMarker;
 
+
   function initialize() {
     geocoder = new google.maps.Geocoder();
-    var loca = new google.maps.LatLng(37.7833, -122.4167);
+    var home = new google.maps.LatLng(37.7833, -122.4167);
 
     map = new google.maps.Map(document.getElementById('map'), {
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: loca,
+      center: home,
       zoom: 12
     });
   }
@@ -57,21 +60,35 @@
     }
   }
 
-  function createMarker(place) {
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
-      map: map,
-      position: place.geometry.location
-    });
+  function placeMarkers() {
+    
+    function getLatLng (address) {
+      var result = "";
+      geocoder = new google.maps.Geocoder();
+      
+      geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          result = results[0].geometry.location;
+          dropTheMarker(result)
+        };
+      });
+    };
 
-    google.maps.event.addListener(marker, 'mouseover', function() {
-      infowindow.setContent(place.name);
-      infowindow.open(map, this);
-    });
+    for (wtf in gon.events) {
+      var eventAddress = (gon.events[wtf].event_location)
+      var latLong = getLatLng(eventAddress)
+    
+    }
   }
 
-	google.maps.event.addDomListener(window, 'load', initialize);
-		
+  function dropTheMarker(latLong) {
+    new google.maps.Marker({
+      position: latLong,
+      map: map,
+      title: 'Hello World!'
+    });
+  }
+	
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
     var currentPosition = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
@@ -96,14 +113,13 @@
             map: map,
             position: results[0].geometry.location
         });
-        // var request = {
-        //   location: results[0].geometry.location,
-        //   radius: 50000,
-        //   name: 'ski',
-        //   keyword: 'mountain',
-        //   type: ['park']
-        // };
-        infowindow = new google.maps.InfoWindow();
+  
+        infowindow = new google.maps.InfoWindow({
+            content: contentString,
+            maxWidth: 200
+        });
+
+        var contentString = "please work"
         var service = new google.maps.places.PlacesService(map);
         // service.nearbySearch(request, callback);
         service.nearbySearch(callback);
@@ -114,6 +130,7 @@
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
+  placeMarkers();
   </script>
 </head>
 
