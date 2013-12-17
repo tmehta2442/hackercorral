@@ -12,7 +12,7 @@
 		</div>
 		<div class="col-sm-6 form-group">
 			<label><%= label_tag :password %></label>
-			<%= password_field_tag :password, class: "form-control" %>
+			<%= password_field_tag :password, params[:password], class: "form-control" %>
 		</div>
 		<div class="actions">
 			<%= submit_tag "Log In", class: "btn btn-primary" %>

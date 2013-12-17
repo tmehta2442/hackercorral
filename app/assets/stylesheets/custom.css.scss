@@ -5,7 +5,11 @@
 	top: 1px;
 	left: 1px;
 }*/
-
+@media (min-width: 768px) {
+  .test {
+    display: none;
+  }
+}
 #map {
         height: 400px;
         width: 600px;

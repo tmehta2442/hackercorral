@@ -12,6 +12,10 @@
 	<% end %>
 	<form role="form">
 		<div class="col-sm-6 form-group">
+			<label><%= f.label :username %></label>
+			<%= f.text_field :username, class: "form-control" %>
+		</div>
+		<div class="col-sm-6 form-group">
 			<label><%= f.label :email %></label>
 			<%= f.text_field :email, class: "form-control" %>
 		</div>
