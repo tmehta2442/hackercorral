@@ -10,8 +10,10 @@ class EventsController < ApplicationController
 
 	def create
 		@event = Event.create(params[:event])
+		@user = current_user
 		
 		if @event.save
+			HackerMailer.event_confirmation(@user).deliver
 			redirect_to @event
 		else
 			render "new"
