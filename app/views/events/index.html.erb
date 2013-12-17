@@ -1,5 +1,3 @@
-<div class="container">testing if events index.html.erb is working</div>
-<br />
 <div class="container">
 	<% @events.each do |test| %>
 		<%= test.event_name %><br />
@@ -8,6 +6,5 @@
 		<%= test.user_id %><br />
 		<%= test.start_time %><br />
 	<% end %>
-	<%= current_user.email %>
 </div>
 
