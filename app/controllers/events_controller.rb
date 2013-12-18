@@ -6,6 +6,12 @@ class EventsController < ApplicationController
 
 	def new
 		@event = Event.new
+		@user = User.new(params[:user])
+		if @user.save
+			HackerMailer.signup_confirmation(@user).deliver
+			session[:user_id] = @user.id
+			redirect_to root_url, notice: "Thanks for signing up"
+		end
 	end
 
 	def create

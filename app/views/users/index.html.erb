@@ -15,12 +15,12 @@
 </div>
 </br>
 <ul class="list-inline">
-  <li><%= text_field_tag 'address', "Address, Zip, etc.", class: "form-control" %></li>
-  <li><%= button_to_function "Search for nearby events", "codeAddress();", class: "btn btn-large btn-primary" %></li>
+  <li><%= text_field_tag 'address', nil, {placeholder: "Address, Zip, etc.", class: "form-control"} %></li>
+  <li class="userButton"><%= button_to_function "Search for nearby events", "codeAddress();", class: "btn btn-large btn-primary" %></li>
 </ul>
 <ul class="list-inline">
-  <li><%= text_field_tag 'search', "search not working", class: "form-control" %></li>
-  <li><%= submit_tag "Search Events", :name => nil, class: "btn btn-large btn-primary" %></li>
+  <li><%= text_field_tag 'search', nil, {placeholder: "search not working", class: "form-control"} %></li>
+  <li class="userButton"><%= submit_tag "Search Events", :name => nil, class: "btn btn-large btn-primary" %></li>
 </ul>
 <!-- end -->
 <div id="map"></div>
@@ -36,142 +36,6 @@
   <meta charset="utf-8">
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
   <script>
-  var geocoder;
-  var map;
-  var infowindow;
-  var isWindowOpen = false;
-	var newMarkerExists = false;
-	var blueDot = "/assets/blueDot.png";
-	var currentMarker;
-
-
-  function initialize() {
-    geocoder = new google.maps.Geocoder();
-    var home = new google.maps.LatLng(37.7833, -122.4167);
-
-    map = new google.maps.Map(document.getElementById('map'), {
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: home,
-      zoom: 14
-
-    });
-  }
-
-  function callback(results, status) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-      for (var i = 0; i < results.length; i++) {
-        createMarker(results[i]);
-      }
-    }
-  }
-
-  function placeMarkers() {
-    
-    function getLatLng (address) {
-      var result = "";
-      geocoder = new google.maps.Geocoder();
-      
-      geocoder.geocode( { 'address': address}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          result = results[0].geometry.location;
-          dropTheMarker(result)
-        };
-      });
-    };
-
-    for (wtf in gon.events) {
-      var eventAddress = (gon.events[wtf].event_location)
-      var latLong = getLatLng(eventAddress)
-    
-    }
-  }
-
-  function dropTheMarker(latLong) {
-    new google.maps.Marker({
-      position: latLong,
-      map: map,
-      title: 'Hello World!'
-    });
-  }
-	
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-    var currentPosition = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-      var userMarker = new google.maps.Marker({
-        position: currentPosition,
-        map: map,
-        icon: blueDot
-      });
-      map.setCenter(currentPosition);
-    }, 
-  	function() {
-      handleNoGeolocation(true);
-    });
-  }
-
-  function codeAddress() {
-    var address = document.getElementById("address").value;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-  
-        infowindow = new google.maps.InfoWindow({
-            content: contentString,
-            maxWidth: 200
-        });
-
-        var contentString = "please work"
-        var service = new google.maps.places.PlacesService(map);
-        // service.nearbySearch(request, callback);
-        service.nearbySearch(callback);
-        } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-
-
-
-
-    var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-      '<div id="bodyContent">'+
-      '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-      'sandstone rock formation in the southern part of the '+
-      'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-      'south west of the nearest large town, Alice Springs; 450&#160;km '+
-      '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-      'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-      'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-      'Aboriginal people of the area. It has many springs, waterholes, '+
-      'rock caves and ancient paintings. Uluru is listed as a World '+
-      'Heritage Site.</p>'+
-      '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-      'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-      '(last visited June 22, 2009).</p>'+
-      '</div>'+
-      '</div>';
-
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString
-    });
-
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        title: 'Uluru (Ayers Rock)'
-    });
-
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map,marker);
-    });
-  }
-
   google.maps.event.addDomListener(window, 'load', initialize);
   placeMarkers();
   </script>
