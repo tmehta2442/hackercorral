@@ -2,6 +2,11 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :events
+  has_many :event_participants
+
+  has_many :joined_events, through: :event_participants,
+  				 source: :event
+  	
 
   attr_accessible :email, :password, :password_confirmation,
   								:username
