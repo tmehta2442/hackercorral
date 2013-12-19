@@ -4,5 +4,5 @@
 These peeps have signed up for your event:
 
 <% @event.participants.each do |user| %>
-	<%= user.username %> and you can contact them at <%= user.email %>
+	<%= user.username %>, contact: <%= user.email %>
 <% end %>
