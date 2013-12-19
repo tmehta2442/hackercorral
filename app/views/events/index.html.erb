@@ -1,10 +1,24 @@
 <div class="container">
-	<% @events.each do |test| %>
-		<%= test.event_name %><br />
-		<%= test.event_location %><br />
-		<%= test.event_details %><br />
-		<%= test.user_id %><br />
-		<%= test.start_time %><br />
+	<% @events.each do |created_event| %>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title"><%= created_event.event_name %><br /></h3>
+			</div>
+			<div class="panel-body">
+				<ul class="list-group">
+					<li class="list-group-item"><h4>Where will it be?</h4><%= created_event.event_location %></li>
+					<li class="list-group-item"><h4>Whats the plan?</h4><%= created_event.event_details %></li>
+					<li class="list-group-item"><h4>Who set it up?</h4><%= created_event.user_id %></li>
+					<!-- @user[created_event.user_id] -->
+					<li class="list-group-item"><h4>When/where?</h4><%= created_event.start_time %></li>
+				</ul>
+			</div>
+			<div class="container">
+				<%= button_to("rsvp", "events/#{created_event.id}/sign_up", class: "btn btn-primary") %>
+			</div>
+			</br>
+		</div>
 	<% end %>
 </div>
+
 

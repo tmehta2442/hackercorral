@@ -1,10 +1,8 @@
 <%= @user.username %>,
 
 
-These peeps signed up for your event:
+These peeps have signed up for your event:
 
-<div class="container">
-	<% @event.participants.each do |user| %>
-		<li><%= user.username %></li>
-	<% end %>
-</div>
+<% @event.participants.each do |user| %>
+	<%= user.username %> and you can contact them at <%= user.email %>
+<% end %>

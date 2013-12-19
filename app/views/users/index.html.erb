@@ -17,10 +17,10 @@
 </br>
 <ul class="list-inline">
   <li><%= text_field_tag 'address', nil, {placeholder: "Address, Zip, etc.", class: "form-control"} %></li>
-  <li class="userButton"><%= button_to_function "Search for nearby events", "codeAddress();", class: "btn btn-large btn-primary" %></li>
-</ul>
-<ul class="list-inline">
-  <li><%= text_field_tag 'search', nil, {placeholder: "search not working", class: "form-control"} %></li>
+  <!-- codeAddress() calling JS -->
+  <li class="userButton"><%= button_to_function "Nearby Event", "codeAddress();", class: "btn btn-large btn-primary" %></li>
+  <p>
+  <li><%= text_field_tag 'search', nil, {placeholder: "coming soon!", class: "form-control"} %></li>
   <li class="userButton"><%= submit_tag "Search Events", :name => nil, class: "btn btn-large btn-primary" %></li>
 </ul>
 <!-- end -->
@@ -36,6 +36,7 @@
 
 <head>
   <meta charset="utf-8">
+  <!-- here is where map loads -> assets/javascripts/application -->
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
   <script>
   google.maps.event.addDomListener(window, 'load', initialize);
@@ -44,7 +45,7 @@
 </head>
 
 <%= link_to image_tag("hackercorral.png", alt: "Hacker Corral"), 'http://hackercorral.com/' %>
-
+<!-- modals they are called in the header partial-->
 <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

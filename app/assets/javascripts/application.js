@@ -18,14 +18,14 @@ $('.navHeaderCollapse').collapse({
 })
 
 var geocoder;
-  var map;
-  var infowindow;
-  var isWindowOpen = false;
-	var newMarkerExists = false;
-	var blueDot = "/assets/blueDot.png";
-	var currentMarker;
+var map;
+var infowindow;
+var isWindowOpen = false;
+var newMarkerExists = false;
+var blueDot = "/assets/blueDot.png";
+var currentMarker;
 
-
+// map opens @ zoom level 14
   function initialize() {
     geocoder = new google.maps.Geocoder();
     var home = new google.maps.LatLng(37.7833, -122.4167);
@@ -45,23 +45,24 @@ var geocoder;
       }
     }
   }
-
+  // function to place markers
   function placeMarkers() {
-    
+    // getting the latitude/longitude
     function getLatLng (address) {
       var result = "";
       geocoder = new google.maps.Geocoder();
       
       geocoder.geocode( { 'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
+          // using first address found
           result = results[0].geometry.location;
           dropTheMarker(result)
         };
       });
     };
-
-    for (wtf in gon.events) {
-      var eventAddress = (gon.events[wtf].event_location)
+    // using the gon gem, from the users controller
+    for (allEvents in gon.events) {
+      var eventAddress = (gon.events[allEvents].event_location)
       var latLong = getLatLng(eventAddress)
     
     }
@@ -74,7 +75,8 @@ var geocoder;
       title: 'Hello World!'
     });
   }
-	
+	// blue dot, thank you Bryan and Marco ;)   .... essentially follows the some logic as 
+// dropping the marker
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
     var currentPosition = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
@@ -114,7 +116,7 @@ var geocoder;
       }
     });
 
-
+// below is testing to get popup working... close
 
 
     var contentString = '<div id="content">'+

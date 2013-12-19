@@ -1,13 +1,19 @@
-
-	<li><%= @event.event_name %></li>
-	<li><%= @event.event_location %></li>
-	<li><%= @user %></li>
-
-
-<%= button_to("rsvp", "#{@event.id}/sign_up", class: "btn btn-primary") %>
-
-<div class="container">
-	<% @event.participants.each do |user| %>
-		<li><%= user.username %></li>
-	<% end %>
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title"><%= @event.event_name %><br /></h3>
+	</div>
+	<div class="panel-body">
+		<ul class="list-group">
+			<li class="list-group-item"><h4>Where will it be?</h4><%= @event.event_location %></li>
+			<li class="list-group-item"><h4>What's the plan?</h4><%= @event.event_details %></li>
+			<li class="list-group-item"><h4>Who set it up?</h4><%= @user %></li>
+			<% @event.participants.each do |user| %>
+			<li class="list-group-item"><h4>Who's going so far?</h4><%= user.username %></li>	
+			<% end %>
+		</ul>
+	</div>
+	<div class="container">
+		<%= button_to("rsvp", "#{@event.id}/sign_up", class: "btn btn-primary") %>
+	</div>
+	</br>
 </div>
