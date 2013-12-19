@@ -1,3 +1,10 @@
-<%= @user.username %>
-sdfsfsasldkf
-blahh
+<%= @user.username %>,
+
+
+These peeps signed up for your event:
+
+<div class="container">
+	<% @event.participants.each do |user| %>
+		<li><%= user.username %></li>
+	<% end %>
+</div>

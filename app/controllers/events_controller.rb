@@ -36,9 +36,7 @@ class EventsController < ApplicationController
 		ep = EventParticipant.create( user_id: current_user.id, event_id: params[:event_id] )
 		if ep.save
 			@user = Event.find(params[:event_id]).user
-			HackerMailer.user_signup(@user).deliver
-		else
-			puts "**"*50
+			HackerMailer.user_signup(@user, Event.find(params[:event_id])).deliver
 		end
 		redirect_to root_path
 	end
