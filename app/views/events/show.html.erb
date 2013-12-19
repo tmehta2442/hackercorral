@@ -1,10 +1,11 @@
-<%= @event.event_name %>
-
+<li><%= @event.event_name %></li>
+<li><%= @event.event_location %></li>
+<li><%= @user %></li>
 
 <%= button_to("rsvp", "#{@event.id}/sign_up", class: "btn btn-primary") %>
 <div class="container">
 	<% @event.participants.each do |user| %>
-		<li><%= user.username %>
+		<li><%= user.username %></li>
 	<% end %>
 </div>
 <!-- button goes here when clicked sends current user's id 

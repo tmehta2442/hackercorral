@@ -29,7 +29,7 @@ class EventsController < ApplicationController
 	def show
 		# @event = Event.includes(:participants).find(params[:id])
 		@event = Event.find(params[:id])
-
+		@user =  User.find(@event.user_id).username
 	end
 
 	def sign_up
