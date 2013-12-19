@@ -11,4 +11,9 @@ class HackerMailer < ActionMailer::Base
   	@user = user
   	mail to: user.email, subject: "You Created an Event!"
   end
+
+  def user_signup(user)
+  	@user = user
+  	mail to: user.email, subject: "Someone Signed up for your event"
+  end
 end

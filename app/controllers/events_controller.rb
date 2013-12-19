@@ -27,15 +27,19 @@ class EventsController < ApplicationController
 	end
 
 	def show
-		# @event = Event.includes(:participants).find(params[:id])
 		@event = Event.find(params[:id])
 		@user =  User.find(@event.user_id).username
 	end
 
 	def sign_up
-
-		EventParticipant.create( user_id: current_user.id, event_id: params[:event_id] )
-		# @eventparticipant = EventParticipants.all
+		#@usersd =  EventParticipant.create( user_id: current_user.id, event_id: params[:event_id] )
+		ep = EventParticipant.create( user_id: current_user.id, event_id: params[:event_id] )
+		if ep.save
+			@user = Event.find(params[:event_id]).user
+			HackerMailer.user_signup(@user).deliver
+		else
+			puts "**"*50
+		end
 		redirect_to root_path
 	end
 

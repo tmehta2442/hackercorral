@@ -4,9 +4,11 @@ class Event < ActiveRecord::Base
 
 	has_many :participants, through: :event_participants, 
 		source: :user
-		
+
 	attr_accessible :event_name, :event_location, :event_details, 
 									:user_id, :start_time
+
+
 
   
 end
