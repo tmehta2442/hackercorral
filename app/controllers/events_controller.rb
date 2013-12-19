@@ -27,7 +27,31 @@ class EventsController < ApplicationController
 	end
 
 	def show
-		@events = Event.all
+		@event = Event.find(params[:id])
+
+	end
+
+	def sign_up
+		# @event_id = Event.find(params[:id])
+		# @events = Event.find(params[:id])
+		# @event_participants = EventParticipants.create(@event)
+		# EventParticipants.create(@event)
+		# asfgasdgssgfklhjafsklgj
+		# @event = User.find(params[:id])
+		# EventParticipant.create(@event)
+		# @event = Event.find(params[:id])
+		# EventParticipant.create(@event)
+		# EventParticipant.create(Event.find(params[:id]))
+		# EventParticipant.create(event.id) #this creates event participant, no user_id/event_id
+		# EventParticipant.create(event_id)
+		# EventParticipant.create(@event.id)
+		# EventParticipant.create(id)
+		# EventParticipant.create(params[:id])
+		EventParticipant.create(user_id: current_user.id, event_id: params[:event_id] )
+		redirect_to root_path
 	end
 
 end
+
+# somewhere here need to get info from event's show to 
+# send to event's database. 
