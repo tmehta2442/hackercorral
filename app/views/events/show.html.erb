@@ -1,6 +1,12 @@
-<%= @event.inspect %>
-<%= button_to("rsvp", "#{@event.id}/sign_up", class: "btn btn-primary") %>
+<%= @event.event_name %>
 
+
+<%= button_to("rsvp", "#{@event.id}/sign_up", class: "btn btn-primary") %>
+<div class="container">
+	<% @event.participants.each do |user| %>
+		<li><%= user.username %>
+	<% end %>
+</div>
 <!-- button goes here when clicked sends current user's id 
 to the event's (which was clicked on calendar/map)
 database... -->
