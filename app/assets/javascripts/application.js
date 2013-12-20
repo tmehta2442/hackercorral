@@ -45,7 +45,7 @@ var currentMarker;
       }
     }
   }
-  // function to place markers
+  // function for place markers
   function placeMarkers() {
     // getting the latitude/longitude
     function getLatLng (address) {
