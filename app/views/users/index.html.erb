@@ -71,6 +71,8 @@
             </div>
               <div class="modal-footer">
               <div class="actions">
+                <label><%= label_tag :remember_me %></label>
+                <%= check_box_tag :remember_me, 1, params[:remember_me] %>
                 <%= submit_tag "Log In", class: "btn btn-primary" %>
               </div>
             </div>  

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131218011028) do
+ActiveRecord::Schema.define(:version => 20131231013430) do
 
   create_table "event_participants", :force => true do |t|
     t.integer  "user_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20131218011028) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "username"
+    t.string   "auth_token"
   end
 
 end
