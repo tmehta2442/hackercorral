@@ -16,6 +16,14 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates_uniqueness_of :email, presence: true, format: { with: VALID_EMAIL_REGEX }
 
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset(self).deliver
+  end
+
+
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64

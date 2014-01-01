@@ -17,4 +17,10 @@ class HackerMailer < ActionMailer::Base
     @event = event
   	mail to: user.email, subject: "Someone Signed up for your event"
   end
+
+  def password_reset(user)
+    @user = user
+    mail :to => user.email, :subject => "Password Reset"
+  end
+
 end
