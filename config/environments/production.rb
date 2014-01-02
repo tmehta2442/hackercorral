@@ -60,7 +60,7 @@ Hackercorral::Application.configure do
     user_name: "hackercorral",
     password: "WDIProject3"
   }
-
+  config.action_mailer.default_url_options = { :host => "hackercorral.com" }
 
   # Enable threaded mode
   # config.threadsafe!
