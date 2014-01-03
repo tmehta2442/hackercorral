@@ -26,92 +26,93 @@ var blueDot = "/assets/blueDot.png";
 var currentMarker;
 
 // map opens @ zoom level 14
-  function initialize() {
-    geocoder = new google.maps.Geocoder();
-    var home = new google.maps.LatLng(37.7833, -122.4167);
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+  var home = new google.maps.LatLng(37.7833, -122.4167);
 
-    map = new google.maps.Map(document.getElementById('map'), {
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: home,
-      zoom: 14
+  map = new google.maps.Map(document.getElementById('map'), {
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    center: home,
+    scrollwheel: false,
+    zoom: 14
 
-    });
-  }
+  });
+}
 
-  function callback(results, status) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-      for (var i = 0; i < results.length; i++) {
-        createMarker(results[i]);
-      }
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      createMarker(results[i]);
     }
   }
+}
   // function for place markers
-  function placeMarkers() {
-    // getting the latitude/longitude
-    function getLatLng (address) {
-      var result = "";
-      geocoder = new google.maps.Geocoder();
-      
-      geocoder.geocode( { 'address': address}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          // using first address found
-          result = results[0].geometry.location;
-          dropTheMarker(result)
-        };
-      });
-    };
-    // using the gon gem, from the users controller
-    for (allEvents in gon.events) {
-      var eventAddress = (gon.events[allEvents].event_location)
-      var latLong = getLatLng(eventAddress)
+function placeMarkers() {
+  // getting the latitude/longitude
+  function getLatLng (address) {
+    var result = "";
+    geocoder = new google.maps.Geocoder();
     
-    }
-  }
-
-  function dropTheMarker(latLong) {
-    new google.maps.Marker({
-      position: latLong,
-      map: map,
-      title: 'Hello World!'
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        // using first address found
+        result = results[0].geometry.location;
+        dropTheMarker(result)
+      };
     });
+  };
+  // using the gon gem, from the users controller
+  for (allEvents in gon.events) {
+    var eventAddress = (gon.events[allEvents].event_location)
+    var latLong = getLatLng(eventAddress)
+  
   }
+}
+
+function dropTheMarker(latLong) {
+  new google.maps.Marker({
+    position: latLong,
+    map: map,
+    title: 'Hello World!'
+  });
+}
 	// blue dot, thank you Bryan and Marco ;)   .... essentially follows the some logic as 
 // dropping the marker
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
+if(navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
     var currentPosition = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
       var userMarker = new google.maps.Marker({
         position: currentPosition,
         map: map,
         icon: blueDot
       });
-      map.setCenter(currentPosition);
-    }, 
-  	function() {
-      handleNoGeolocation(true);
-    });
-  }
+    map.setCenter(currentPosition);
+  }, 
+	function() {
+    handleNoGeolocation(true);
+  });
+}
 
   function codeAddress() {
     var address = document.getElementById("address").value;
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
+          var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+          });
   
-        infowindow = new google.maps.InfoWindow({
-            content: contentString,
-            maxWidth: 200
-        });
+          infowindow = new google.maps.InfoWindow({
+              content: contentString,
+              maxWidth: 200
+          });
 
         var contentString = "please work"
         var service = new google.maps.places.PlacesService(map);
         // service.nearbySearch(request, callback);
         service.nearbySearch(callback);
-        } else {
+      } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
@@ -154,3 +155,4 @@ var currentMarker;
       infowindow.open(map,marker);
     });
   }
+
